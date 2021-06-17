@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab input {
+            width: 60px;
+            height: 30px;
+            background-color: grey;
+            line-height: 30px;
+            text-align: center;
+            color: white;
+            border: 0 none;
+        }
+        
+        .content {
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+        }
+        
+        .content .item {
+            height: 300px;
+            line-height: 300px;
+            font-size: 50px;
+            text-align: center;
+            color: white;
+            background-color: orange;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tab" class="tab">
+        <input type="button" value="1" style="background-color: orange;">
+        <input type="button" value="2">
+        <input type="button" value="3">
+    </div>
+    <div id="content" class="content">
+        <div class="item" style="display: block;">内容1</div>
+        <div class="item" style="background-color: pink;">内容2</div>
+        <div class="item" style="background-color: rebeccapurple;">内容3</div>
+    </div>
+</body>
+<script>
+    // 面向对象的方式
+    // 写个构造函数 Tab 上面有两个属性 tab 切换的buttons, tab切换的内容
+    function Tab() {
+        var tabElement = document.getElementById('tab');
+        var contentElement = document.getElementById('content');
+        this.tabButtons = tabElement.querySelectorAll('input'); // 获取tab中所有的button按钮
+        this.tabItems = contentElement.querySelectorAll('.item');
+        // for 循环,给每一个buttons绑定一个click事件
+        var len = this.tabButtons.length;
+        for (var i = 0; i < len; i++) {
+            this.tabButtons[i].index = i;
+            var _this = this; // 把新实例对象赋值给_this变量,这样就可以通过 _this.xxx 访问实例上和原型上的属性方法
+            this.tabButtons[i].onclick = function() {
+                // 样式切换
+                console.log(this); // this 指向的是当前dom元素 this.tabButtons[i]
+                // this.changeActive();// this指向的是谁,能调到Tab原型上的changeActive方法吗?
+                console.log(_this);
+                _this.changeActive(this, _this); // 两个实参说明:第一个参数 this 指向的是当前被点击的元素,里面含有当前的索引值, 第二个参数 _this 指向的是新对象实例,以便我们读取新对象实例上的两个属性(tabButtons tabItems)
+            }
+        }
+    }
+    // Tab构造函数的原型上,添加 changeActive 用来修饰
+    Tab.prototype.changeActive = function(dom, _this) {
+        // 形参说明: 第一个参数 dom 就是指当前元素, 第二个参数 新对象实例
+        console.log(dom, 'dom'); // 当前被点击的dom元素
+        console.log(999);
+        var index = dom.index; // 获取当前被点击元素的索引值
+        var len = document.getElementById('tab').querySelectorAll('input').length;
+        for (var j = 0; j < len; j++) {
+            // 对所有的tab按钮 置灰,对所有的content 隐藏
+            _this.tabButtons[j].style.background = 'grey';
+            _this.tabItems[j].style.display = 'none';
+            // 对当前被点击的tab按钮 高亮,当前对应的content 显示
+            _this.tabButtons[index].style.background = 'orange';
+            _this.tabItems[index].style.display = 'block';
+
+
+        }
+    }
+    var tab1 = new Tab();
+</script>
+
+</html>

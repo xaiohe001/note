@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jQuery-min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <span>1</span>
+        <span></span>
+        <span class="mmp">3</span>
+        <span>4</span>
+        <i>yellow<span>666</span></i>
+    </div>
+</body>
+<script>
+    // 包裹
+    //  wrap 选中的元素外面一层标签
+    //  unwarp 只要选中一个元素,就会把它的同级元素拿到当前父元素外面,同时删除父级节点
+    //  wrapAll 会把所有选中的元素放到我们设置的这个标签内(这个标签是传的参数标签)
+    //  wrapInner 会把选中的元素内容外面套一层标签(这个标签是传的参数标签)
+
+    var $container = $('.container');
+    // var $spann = $('span').wrap('<p></p>'); // 在span标签外又套了一层p标签
+    // $('.mmp').unwrap(); // 选中一个元素,就会把它的同级元素拿到当前父元素外面,同时删除父级节点
+    $('span').wrapAll('<p></p>');
+    $('span').wrapInner('<em></em>');
+</script>
+
+</html>

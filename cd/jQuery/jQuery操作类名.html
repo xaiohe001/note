@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery-min.js"></script>
+</head>
+
+<body>
+    <div class="container"></div>
+    <button>传送</button>
+    <script>
+        // 操作类型
+        // addClass('类名')  添加类名
+        // removeClass('类名')  删除类名
+        // toggleClass('类名')  切换类名(若存在传入的类名,会给当前的元素删除这个类名,若没有这个类名,会给这个元素加上这个类名)
+        var $container = $('.container');
+        var $button = $('button');
+        $container.addClass('box');
+        // $container.removeClass('box');
+        $container.removeClass(function(index, value) {
+            console.log(index, value);
+            return index % 2 === 0 ? 'container' : value
+        })
+
+        $button.on('click', function() {
+            $container.toggleClass('box');
+        })
+    </script>
+</body>
+
+</html>

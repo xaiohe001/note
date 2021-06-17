@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // js 中 实现继承的方式 主要是通过原型链
+        // es6 class它的内部实现也是通过原型链(了解)
+        ////  实现继承方式一:
+        function Animal() {
+            this.species = '动物';
+
+        }
+        Animal.prototype.address = '动物园';
+
+        function Dog(name, age) {
+            Animal.call(this); // Animal 父级构造函数绑定子构造函数的实例上,这样就能 把Animal里面的属性添加到 Dog 里面;改变了Animal的this指向,指向了当前构造函数(Dog)的实例化对象上;通过apply call bind 来实现继承的话,不能继承父级构造函数上面 原型对象上的属性和方法
+            this.name = name;
+            this.age = age;
+        }
+        var dog1 = new Dog('咖啡', 8);
+        var dog2 = new Dog('黑黑', 6);
+        console.log(dog1, dog2);
+        console.log(dog1.address, dog2.address);
+
+        // 实现继承方式二:
+        function Animal() {
+            this.species = '动物';
+
+        }
+        Animal.prototype.sayName = function() {
+            console.log(this.species);
+        }
+
+        function Cat(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Cat.prototype = Animal.prototype // 在这里重写了 Cat 的原型对象,用原型链实现继承
+        Cat.prototype = new Animal() // 在这里重写了 Cat 的原型对象, 用原型链实现继承 , 这时候它的construcotor 指向的是 Animal
+            // Object.create() 是创建一个新对象的方式
+            // 实际开发中 还是建议用字面量的形式 var obj = {};
+        Cat.prototype = Object.create(new Animal()); // 在这里重写了 Cat 的原型对象, 用原型链实现继承 , 这时候它的construcotor 指向的是 Animal
+        var cat1 = new Cat('咪咪', 3);
+        var cat2 = new Cat('花花', 5);
+        console.log('----------------------');
+        console.log(cat1, cat2);
+        console.log(cat1 instanceof Animal);
+        console.log(cat1 instanceof Cat);
+
+        console.log('======================');
+        // in 运算符
+        // 检查 某属性 是否在当前实例上,无论是自身实例上,还是在原型对象上
+        // 若有,返回true;若不存在,返回false
+        console.log('name' in cat1); // 用的比较少 了解
+        // for...in... 他会遍历出当前实例上所有的属性和方法,包含原型对象上的属性和方法
+        for (var key in cat1) {
+            console.log(key);
+        }
+        console.log('-------------------------');
+        // hasOwnProperty()
+        // 若某个属性在实例上,返回true;若该属性不在当前实例,而是在原型对象,返回false
+        for (var key in cat1) {
+            if (cat1.hasOwnProperty(key)) {
+                console.log(key);
+            }
+        }
+        // instanceof
+        // typeof 是检查基本类型
+        // instanceof 是检查引用类型
+        // 检查当前构造函数的prototype属性(原型对象)是否在被检测的对象上的原型链
+        // 若在 返回true; 若不在 返回false;
+        console.log(cat1 instanceof Cat); // true
+
+        var arr = new Array();
+        console.log(cat1 instanceof Array); // false
+        console.log(arr instanceof Array); // true
+        console.log(arr instanceof Function); // false
+        console.log(arr instanceof Object); // true
+    </script>
+</body>
+
+</html>

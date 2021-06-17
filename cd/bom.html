@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="https://www.baidu.com"></a>
+    <script>
+        // navigator 对象
+
+        var appName = navigator.appName; // 浏览器名称
+        console.log(appName); //natscape
+        var appVersion = navigator.appVersion; //浏览器的版本
+        console.log(appVersion); //5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36
+        var onLine = navigator.onLine; // 是否处于脱机状态
+        console.log(onLine); // 有网 true  断网 false
+        var cookieEnabled = navigator.cookieEnabled; //是否启用cookie
+        console.log(cookieEnabled); // 是 true 否false
+        var plateForm = navigator.platform; //操作平台系统
+        console.log(plateForm); // X32
+
+        // location 对象
+        // history 对象
+        // back() forward() go()
+
+        // 浏览器设备的
+        // availWidth  availHeight width height
+        console.log(screen.availWidth, screen.availHeight);
+        console.log(screen.width, screen.height);
+    </script>
+</body>
+
+</html>

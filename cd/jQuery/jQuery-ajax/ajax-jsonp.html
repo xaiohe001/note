@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jQuery-min.js"></script>
+</head>
+
+<body>
+    <script>
+        // ajax和jsonp的原理是不同的
+        // ajax是依赖 XMLHttpRequest
+        // jsonp:
+        //      解决跨域的一种方式,缺点是不能post请求
+        //      通过动态创建script标签,利用script.src没有访问限制的特点
+        //      服务端允许客户端传一个函数(名)过去,然后服务端会把该函数名返回,同时把你要读取的数据包裹给这个函数名
+
+        function getData(data) {
+            console.log(data);
+        }
+        $.ajax({
+            url: 'http://10.50.5.75:3000/userList',
+            method: 'jsonp',
+
+            dataType: 'jsonp',
+            jsonpCallback: 'getData', // 如果不想把数据传给success,这里可以自定义接收数据的函数
+            success: function(data) {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

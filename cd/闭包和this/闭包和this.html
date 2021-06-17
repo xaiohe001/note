@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 什么是闭包?
+        // 一个函数内部嵌套一个函数,外层函数把嵌套的函数以返回值的形式返回,这样就形成了闭包
+        // 在函数外部可以访问函数内部的局部变量
+        // 作用域和作用链,就是当前的执行环境,从当前环境向剥洋葱一样,往外扩展,一直到最外层结束,这个范围都是他的执行环境
+        var num1 = 0;
+
+        function fn1() {
+            //对于fn1来说,从这个层级开始,一直往外,都是他的执行环境
+            var num2 = 1;
+            console.log(num1);
+            console.log(num2);
+            // console.log(num3); 报错 
+
+            console.log('---------------------');
+            fn2();
+            fn3();
+
+            function fn2() {
+                var num3 = 2;
+                console.log(num1);
+                console.log(num2);
+                console.log(num3);
+                // console.log(num4); 报错
+                console.log('------------------');
+            }
+
+            function fn3() {
+                var num4 = 3;
+                console.log(num1);
+                console.log(num2);
+                // console.log(num3);
+                console.log(num4);
+            }
+        }
+        fn1();
+    </script>
+</body>
+
+</html>

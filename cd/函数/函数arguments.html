@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var num = 100;
+
+
+        // function myFun() {
+        //     var some = 200;
+        //     console.log(num);
+        // }
+        // myFun();
+
+        // var fun = function() {}
+        // console.log(some); //报错
+        // 变量
+        // 定义在函数外面的变量,全局变量,函数内部是可以访问到的
+        // 定义在函数内的变量,局部变量,一般函数外部是不能访问,他的执行环境只能在函数内部
+
+
+        function myFun(a, b, c) {
+            console.log(arguments); // 类数组对象,前提是个对象,具有数组的长度属性
+            console.log(arguments.length);
+            console.log(a, b, c);
+        }
+        myFun(1, 2, 3, 4);
+
+        // 形参 就是我们定义函数的参数
+        // 实参 是我们在调用函数时,向里面传递的参数
+        // 当形参和实参的个数不一样时  多余的形参,默认值是undefined  多余的实参,被忽略了,但是 arguments的长度是由实参的个数来决定的,不是形参的个数来决定的
+        ////  函数的两个属性 length 和 arguments
+        console.log(myFun.length); // 函数的长度是由形参的个数来决定的(不常用)
+
+        // 常见的两个 类数组对象
+        // document.querySelectorAll()
+        // arguments
+    </script>
+</body>
+
+</html>

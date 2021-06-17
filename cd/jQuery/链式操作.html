@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery-min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <i>666</i>
+        <p>888</p>
+        <span>999</span>
+    </div>
+</body>
+<script>
+    // 链式操作
+    var $container = $('.container');
+    // $container.css('color', 'pink');
+    // $container.addClass('box');
+    // $container.text('Don`t me');
+    // 该写法等同于上面三行
+    $container.css('color', 'pink').addClass('box').text('滚');
+    // jQuery中链式操作是怎么实现的?(高薪必问)(选做)
+</script>
+
+</html>

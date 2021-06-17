@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手风琴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: pink;
+        }
+        
+        .wrap {
+            display: flex;
+            width: 90vw;
+        }
+        
+        .card {
+            background-size: auto 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50px;
+            color: #fff;
+            flex: 0.5;
+            cursor: pointer;
+            height: 80vh;
+            position: relative;
+            margin: 10px;
+            transition: flex 0.7s cubic-bezier(0.05, 0.6, 0.4, 0.9);
+        }
+        
+        .card.active {
+            flex: 5;
+        }
+        
+        @media (max-width: 500px) {
+            .wrap {
+                width: 100vw;
+            }
+            .card:nth-child(4) {
+                display: none;
+            }
+            .card:nth-child(5) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="card active" style="background-image: url(./img/wallhaven-zmm93v.jpg);"></div>
+        <div class="card" style="background-image: url(./img/wallhaven-vge2em.jpg);"></div>
+        <div class="card" style="background-image: url(./img/wallhaven-n61y56.jpg);"></div>
+        <div class="card" style="background-image: url(./img/wallhaven-833152.jpg);"></div>
+        <div class="card" style="background-image: url(./img/wallhaven-01l7ev.jpg);"></div>
+    </div>
+</body>
+<script>
+    var wrap = document.getElementsByClassName('wrap')[0];
+    var cards = wrap.getElementsByClassName('card');
+    // console.log(wrap);
+    // console.log(cards);
+    //遍历节点给cards添加移入事件
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('click', function() {
+            //事先清除
+            removeActive()
+                //给card添加类名
+            this.className = 'card active'
+        })
+    }
+
+    function removeActive() {
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].className = 'card'
+        }
+    }
+</script>
+
+</html>

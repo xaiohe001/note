@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jQuery-min.js"></script>
+</head>
+
+<body>
+    <div class="container">撩我</div>
+    <script>
+        // 外部插入
+        // before 在某个元素之前插入
+        // after  在某个元素之后插入
+        // 已知元素.before(要插入的内容)
+        // 已知元素.after(要插入的内容)
+
+        // insertBefore 把插入的内容放到某个元素之前
+        // insertAfter  把插入的内容放到某个元素之后
+        // 要插入的内容.insertBefore(已知元素)
+        // 要插入的内容.insertAfter(已知元素)
+
+        var $container = $('.container');
+        var $p = $('<p>new content前</p>');
+        var $p1 = $('<p>new content后</p>');
+        // $container.before($p);
+        $p.insertBefore($container);
+        // $container.After($p1);
+        $p1.insertAfter($container);
+    </script>
+</body>
+
+</html>

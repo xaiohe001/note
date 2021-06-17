@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery-min.js"></script>
+</head>
+
+<body>
+    <div class="love">
+        <p>醉酒当歌,人生几何?</p>
+    </div>
+    <script>
+        // text 方法 获取或改变文本内容
+        // 最多接 若没有参数传入, 是获取内容
+        // 若传入参数, 是设置内容
+        // html 方法 获取或改变html内容
+        // 最多接 若没有参数传入, 是获取内容
+        // 若传入参数, 是设置内容
+        // css 修改样式
+        //  方式一: paraml(属性名),paraml(属性名);
+        //  方式二: {key1:value,key2:value2,key3:value3};
+
+        // attr 获取或修改html的自定义属性, 他性
+        // prop 获取或修改元素的固有属性, 他是性
+
+
+
+        $(function() {
+            var $love = $('.love');
+            console.log($love.text());
+            $love.text('替换过来的内容,略略略');
+            $love.text('<span>替换过来的内容,略略略</span>');
+            console.log($love.html());
+            $love.html('<i>又被替换过来的内容,呜呜呜</i>');
+
+            //// 改变样式
+            // $love.css('color', 'blue');
+            // $love.css('background', '#666');
+            // $love.css('font-size', '30px');
+            $love.css({
+                color: 'yellow',
+                background: '#999',
+                fontSize: '30px'
+            })
+
+            //// 属性
+            //   setAttribute('自定义的属性名','属性值') 原生js
+            //   jQuery  attr
+            $love.attr('date-id', 'miss-you'); // 设置自定义属性
+            console.log($love.attr('date-id')); // 传入一个参数是获取自定义属性
+
+            //   prop
+            //   input checked是 复选框的固有属性
+            //   传一个参数是获取,传两个参数是设置
+            var $input = $('.input');
+            console.log($input.prop('checked', true));
+            console.log($input.prop('checked')); // checked 的固有属性
+            console.log($input.prop('xxx', 1)); // x data-index都是自定义属性,用prop设置自定义属性时,该属性是会被添加到dom对象上,而不是html结构里
+        })
+    </script>
+</body>
+
+</html>

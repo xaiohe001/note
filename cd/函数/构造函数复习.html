@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        ////// 每一个引用类型都有一个构造函数
+        var fn1 = function() {}; // 函数名是fn1  函数表达式的写法
+        var fn2 = new Function('str', 'console.log(str)'); // 函数 也是一个特殊的对象,前面是参数,后面是函数体
+        // fn2 是通过 Function 构造函数 来实例化一个对象
+        // var fn2 = new Function('str', 'console.log(str)'); 相当于: var fn2 = function(str){console.log(str)};
+        function Fn1() {};
+        var o2 = new Object(); // o2 是通过Object的构造函数 来实例化一个对象
+        var o3 = new Array(); // o3 是通过数组的构造函数 来实例化一个数组
+        var o1 = new fn1(); // 通过 构造函数 来实例化一个对象
+        var o4 = new Fn1(); // 通过 构造函数 来实例化一个对象
+        // 引用类型有: odject array function
+        // typeof 常用来检测基本类型 string number boolean undefined
+        console.log(typeof fn1); // function
+        console.log(typeof fn2); // function 函数图像
+        console.log(typeof o1); // object
+        console.log(typeof o2, typeof o3); // object object
+        console.log(fn2.length); // 函数定义时,length是由形参的个数决定的
+        console.log(typeof fn3);
+    </script>
+</body>
+
+</html>

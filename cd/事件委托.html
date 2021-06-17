@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="li-list">
+            <li class="item">item1</li>
+            <!--onclick="myFun()" -->
+            <li class="item">item2</li>
+            <!--onclick="myFun()" -->
+            <li class="item">item3</li>
+            <!--onclick="myFun()" -->
+        </ul>
+    </div>
+
+
+    <!-- <script>
+        var lis = document.querySelectorAll('.item');
+        var liList = document.querySelector('.li-list');
+        var i = 0;
+        for (i; i < lis.length; i++) {
+            lis[i].onclick = function() {
+                console.log('li被点击了');
+            }
+        }
+        var li = document.createElement('li');
+        i++;
+        li.innerText = 'item' + i;
+        liList.appendChild(li);
+    </script> -->
+    <!-- 02 <script>
+        var lis = document.querySelectorAll('.item');
+        var liList = document.querySelector('.li-list');
+        //cloneNode  复制当前节点
+        // 参数说明 默认是 true 复制当前节点内容及内容和事件,若为false,只复制节点
+        var li = document.querySelectorAll('.item')[0].cloneNode(true);
+        liList.appendChild(li);
+
+        function myFun() {
+            console.log('li被点击了');
+        }
+    </script> -->
+    <script>
+        var lis = document.querySelectorAll('.item');
+        var liList = document.querySelector('.li-list');
+        //给ul绑定事件
+        liList.onclick = function(evt) {
+                var event = evt || window.event;
+                var target = event.target;
+                var tagName = target.nodeName; //返回当前节点的标签名,并且是大写的
+                if (tagName == 'LI') {
+                    console.log('li元素被点击了');
+                }
+            }
+            //创建一个新的li标签
+        var li = document.createElement('li');
+        li.innerText = '这是新增的li';
+        liList.appendChild(li);
+    </script>
+</body>
+
+</html>

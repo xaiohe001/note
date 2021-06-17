@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <ol></ol>
+    </div>
+</body>
+<script>
+    var xhr = new XMLHttpRequest();
+    var ul = document.querySelector('.container ol');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            //// 关注点 开始
+            var result = xhr.responseText; // 从后台请求到的数据
+            var data = JSON.parse(result); // json字符串转为 js对象
+            var len = data.length; // data的长度
+            for (var i = 0; i < len; i++) {
+                var li = document.createElement('li'); //创建li标签
+                li.innerHTML = '姓名:' + data[i].name + '年龄:' + data[i].age + '地址:' + data[i].address + '';
+                ul.appendChild(li);
+            }
+            //// 关注点 结束
+        }
+    }
+
+
+    xhr.open('GET', 'http://10.50.5.75:3000/userList', true);
+    xhr.send();
+</script>
+
+</html>

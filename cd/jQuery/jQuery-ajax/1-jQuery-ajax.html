@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jQuery-min.js"></script>
+</head>
+
+<body>
+    <script>
+        // url:'',
+        // 参数: name age address
+        // 获取的数据有哪些值
+
+        //  get post
+        //  get 常用来获取数据(应用场景:获取列表数据 获取详情信息)
+        //  post 常用来给服务端传送数据(应用场景:form表单提交,添加信息)
+        //  $.get(url,[data],[fn],type)
+        //      url  请求地址
+        //      data 给服务端传的参数
+        //          data的值的两种方式:(还有一种给接口传参的方式,在url添加:http://10.50.5.75:3000/userList?id=1&name=xiaoqiu)
+        //          {key:value,key1:value2}
+        //          {id:1,name:xiaoqiu}
+        //          或者 'key1=value1&key2=value2'  'id=1&name=xiaoqiu'
+        //      fn 是个回调函数,里面有个参数,就是返回的数据
+        //      type 返回的数据类型格式 xml html text json(最多的) jsonp _default 需要说明的是,不是前端设置了什么类型,后端就会返回什么类型,而是根据后端返回的数据,来设置最佳数据类型
+
+        //  $.getJSON()
+        //  参数同上,没有第四个参数 type:json,数据会自动生成json对象
+        //  $.getScrip()
+        //  参数同上,获取的数据是js代码,调用的时候,会执行相关的js代码
+
+        // $.getScript('./data.js');
+        // $.get('http://10.50.5.75:3000/userList', {
+        //     _limit: 6
+        // }, function(data) {
+        //     console.log(data);
+        // }, 'json')
+        // $.get('http://10.50.5.75:3000/userList?_limit=3', function(data) {
+        //     console.log(data)
+        // }, 'json')
+        // $.get('http://10.50.5.75:3000/userList', '_limit=5', function(data) {
+        //     console.log(data)
+        // }, 'json')                     
+
+        // $.post('http://10.50.5.75:3000/userList', {
+        //     name: 'xiaoqiu',
+        //     age: 12,
+        //     address: '杭州'
+        // }, function(data) {
+        //     console.log(data)
+        // }, 'json')
+
+        $.get('http://10.50.5.75:3000/userList', function(data) {
+            console.log(data)
+        }, 'json')
+    </script>
+</body>
+
+</html>

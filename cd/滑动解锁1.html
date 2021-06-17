@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 300px;
+            height: 50px;
+            margin: 200px auto;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .progress {
+            width: 0;
+            background: palevioletred url(./arrow_right.png) right center no-repeat;
+            padding-right: 32px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="progress"></div>
+    </div>
+</body>
+<script>
+    var box = document.querySelector('.box');
+    var progress = document.querySelector('.progress');
+    var x = 0; //鼠标的偏移量
+    var x1 = 0; //offsetX 相对于当前被点击元素的左上角距离
+    var x2 = 0; //进度条距离浏览器可视区域的左边距离
+    // onmousedown 鼠标按下触发
+    progress.onmousedown = function(evt) {
+        var event = evt || window.event;
+        x1 = event.offsetX;
+        x2 = progress.offsetLeft;
+        x = event.clientX - x1 - x2; //当前鼠标偏移量
+        console.log(x);
+        if (x < 0) {
+            x = 0
+        }
+        window.onmousemove = function(evt) {
+            var event = evt || window.event;
+            x = event.clientX - x1 - x2;
+            console.log(x);
+            if (x > 268) {
+                x = 268
+            }
+            progress.style.width = x + 'px';
+        }
+
+    }
+    window.onmouseup = function() {
+        window.onmousemove = null; //mousenove 事件 绑定
+        if (x >= 268) {
+            alert('解锁成功!')
+        } else {
+            progress.style.width = 0;
+            progress.style.transition = "width .3s";
+        }
+    }
+</script>
+
+</html>

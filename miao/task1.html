@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            
+        }
+        div{
+            width: 300px;
+            height: 50px;
+            border: 1px solid black;
+            border-radius: 15px;
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .ins{
+            width: 300px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            transform: translateX(-250px);
+        }
+        .tail{
+            width: 250px;
+            background-color: red;
+            cursor: default;
+        }
+        .head{
+            cursor: default;
+            width: 50px;
+            background-color: aqua;
+            font-size: 40px;
+            text-align: right;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section class="ins">
+            <section class="tail"></section>
+            <section class="head"></section>
+        </section>
+    </div>
+    
+    <script>
+        var head = document.querySelector('.head')
+        var ins = document.querySelector('.ins')
+        var coordinate,num = -250,n = 0,ss = 0
+        function mov(evt){
+            var event = evt || window.event
+            n = event.clientX - coordinate
+            ss = num + n
+            if(ss <= -250){
+                ss = -250 
+            }
+            if(ss >= 0){
+                ss = 0
+            }
+            ins.style.transform = 'translateX('+  ss +'px)'
+            if(ss === 0){
+                alert('解锁成功')
+            }
+        }
+        head.onmousedown = function (evt) {
+            var event = evt || window.event
+            coordinate = event.clientX
+            head.addEventListener('mousemove',mov,false)
+        }
+
+        head.onmouseup = function(){
+            num = ss
+            head.removeEventListener('mousemove',mov,false)
+        }
+
+        head.onmouseout = function () {
+            head.removeEventListener('mousemove',mov,false)
+        }
+    </script>
+</body>
+</html>

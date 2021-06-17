@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" id="form">
+        <input type="text" id="input" placeholder="love" name="name">
+        <input type="submit" id="submit" value="提交">
+        <input type="reset" id="reset" value="重置"><br><br>
+        <input type="checkbox" id="checkbox"><br><br>
+        <span>男:</span><input type="radio" value="男" name="sex" class="radio">
+        <span>女:</span><input type="radio" value="女" name="sex" class="radio">
+        <select name="" id="select">
+            <option value="河南省">河南省</option>
+            <option value="郑州">郑州</option>
+            <option value="南阳">南阳</option>
+            <option value="安阳">安阳</option>
+            <option value="濮阳">濮阳</option>
+            <option value="洛阳">洛阳</option>
+            <option value="信阳">信阳</option>
+            <option value="荥阳">荥阳</option>
+            <option value="淮阳">淮阳</option>
+            <option value="泌阳">泌阳</option>
+        </select>
+
+    </form>
+    <script>
+        var submit = document.getElementById('submit');
+        var reset = document.getElementById('reset');
+        var form = document.getElementById('form');
+        var input = document.getElementById('input');
+        var checkbox = document.getElementById('checkbox');
+        var radios = document.getElementsByClassName('radio');
+        form.onsubmit = function(evt) {
+            var event = evt || window.event;
+            console.log('form表单将要提交');
+            event.preventDefault(); //阻止form表单默认提交的行为
+        }
+        form.onreset = function() {
+                console.log('form表单将要被重置');
+            }
+            //input的属性和方法
+        console.log(input.placeholder, input.name, input.type);
+        input.onfocus = function() {
+            console.log('input获得焦点');
+        }
+        input.onblur = function() {
+            console.log('input失去焦点');
+        }
+        input.oninput = function() { //oninput 往input输入内容触发
+            console.log('oninput被触发了');
+        }
+        input.onchange = function() {
+            console.log('onchange触发');
+        }
+        input.onselect = function() { //选中input中的内容
+            console.log('onselect被触发了');
+        }
+        checkbox.onclick = function() {
+            var checked = checkbox.checked;
+            console.log(checked);
+        }
+        var radio1 = radios[0];
+        var radio2 = radios[1];
+        radio1.onchange = function() {
+            console.log(radio1.checked, this.value);
+        }
+        radio2.onchange = function() {
+            console.log(radio2.checked, this.value);
+        }
+        var select = document.getElementById('select');
+        select.onchange = function() {
+            var selectedIndex = select.selectedIndex;
+            // console.log(selectedIndex);
+            // console.log(select.value);
+            var option = select.options[selectedIndex];
+            var value = option.value;
+            console.log(value);
+        }
+    </script>
+</body>
+
+</html>

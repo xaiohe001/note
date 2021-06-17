@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery-min.js"></script>
+</head>
+
+<body>
+    <div id="root">root内容</div>
+    <div class="container">container内容</div>
+    <p>p内容</p>
+    <span>span内容</span>
+    <script>
+        // jquery获取元素的方式
+        // $('#id')
+        // $('.className')
+        // $('tagName')
+        // $('tagName1,tagName2')
+
+        console.log($('#root'));
+        console.log($('.container'));
+        console.log($('div'));
+        console.log($('p,span'));
+        console.log($('#root,.container'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="detail" style="width: 1000px; margin: auto;"></div>
+    <script src="jquery.min.js"></script>
+    <script>
+        $.ajax({
+            url: 'https://cnodejs.org/api/v1/topic/' + window.location.search.split('=')[1],
+            methods: 'GET',
+            success: function(res) {
+                var str = ''
+                console.log(res.data);
+                str = `
+                    <div class="content">
+                        <h2 style="text-align:center">${res.data.title}</h2>
+                        <div>${res.data.content}</div>
+                        </div>
+                `
+                $('.detail').html(str)
+            },
+            fail: function(err) {
+                console.log(err);
+            }
+        })
+    </script>
+
+</body>
+
+</html>

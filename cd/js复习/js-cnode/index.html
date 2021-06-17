@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="panel panel-default" style="width: 1000px; margin: auto;">
+
+        <div class="panel-heading">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="#">全部</a></li>
+                <li role="presentation"><a href="#">精华</a></li>
+                <li role="presentation"><a href="#">分享</a></li>
+                <li role="presentation"><a href="#">问答</a></li>
+                <li role="presentation"><a href="#">招聘</a></li>
+                <li role="presentation"><a href="#">客户端测试</a></li>
+            </ul>
+        </div>
+        <div class="panel-body">
+        </div>
+        <nav aria-label="Page navigation" style='text-align: center;'>
+            <ul class="pagination">
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+    <script src="jquery.min.js"></script>
+    <script>
+        showData()
+
+        function showData(i = 'all', page = 1) {
+            $.ajax({
+                url: 'https://cnodejs.org/api/v1/topics',
+                data: {
+                    page: page,
+                    limit: 10,
+                    tab: i
+                },
+                methods: 'GET',
+                success: function(res) {
+                    var str = ''
+                    for (var i = 0; i < res.data.length; i++) {
+                        str += `
+                    <div class="media">
+                        <div class="media-left" style="float: left;">
+                            <a href="#">
+                            <img class="media-object" src="${res.data[i].author.avatar_url}" style="width: 64px; height: 64px;">
+                            </a>
+                        </div>
+                        <div class="media-body" style="float: left; width: 800px;">
+                            <a class="media-heading" href="detail.html?id=${res.data[i].id}">${res.data[i].title.length>20?res.data[i].title.slice(0,20)+'...':res.data[i].title}</a>
+
+                        </div>
+                        <div class="media-right" style="float: right;">
+                            <a href="#">3小时前</a>
+                        </div>
+                    </div>
+                    `
+                    }
+                    $(".panel-body").html(str)
+                },
+                fail: function(err) {
+                    console.log(err);
+                }
+            })
+        }
+
+        $('.panel-heading').click(() => { //箭头函数 ()=>{}
+            let a = event.target.innerHTML
+            let top = 'all'
+            switch (a) {
+                case '精华':
+                    top = 'good'
+                    break;
+
+                case '分享':
+
+                    top = 'share'
+                    break;
+
+                case '问答':
+                    top = 'ask'
+                    break;
+
+                case '招聘':
+                    top = 'job'
+                    break;
+
+
+                default:
+                    break;
+            }
+            window.localStorage.setItem('i', top)
+            showData(top)
+        })
+        $('.pagination').click(() => {
+            console.log(window.localStorage.getItem('i'));
+            showData(window.localStorage.getItem('i'), event.target.innerHTML)
+        })
+    </script>
+</body>
+
+</html>

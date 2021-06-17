@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 1000px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        .min {
+            position: relative;
+            border: 1px solid #000;
+            width: 400px;
+        }
+        
+        .min>img {
+            display: block;
+            width: 400px;
+            height: 400px;
+        }
+        
+        .min>span {
+            background-color: rgba(28, 29, 117, .5);
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            display: none;
+        }
+        
+        .max {
+            position: absolute;
+            left: 400px;
+            top: 0;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            background-image: url("img/1.jpg");
+            /* span的宽150 / div.min的宽400 == div.max的宽 / ? */
+            background-size: 1066px 1066px;
+            background-position: 0 0;
+            display: none;
+        }
+        
+        ul {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        li {
+            list-style: none;
+            margin-right: 20px;
+        }
+        
+        li>img {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #fff;
+        }
+        
+        .action {
+            border-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- div.box>(div.min>img+span)+div.max+ul>(li>img)*4 -->
+    <div class="box">
+        <div class="min"><img src="./img/1.jpg" alt=""><span></span></div>
+        <div class="max"></div>
+        <ul>
+            <li><img class="action" src="./img/1.jpg" alt=""></li>
+            <li><img src="./img/2.jpg" alt=""></li>
+            <li><img src="./img/3.jpg" alt=""></li>
+            <li><img src="./img/4.jpg" alt=""></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var ul = document.querySelector('ul')
+    var minImg = document.querySelector('.min > img')
+    var lis = document.querySelectorAll('li')
+    var liImg = document.querySelectorAll('li > img')
+    var span = document.querySelector('span')
+    var div = document.querySelector('.max')
+    var min = document.querySelector('.min')
+    var wd, hg, mw, mh
+    var ww, hh
+    for (let i = 0; i < lis.length; i++) {
+        liImg[i].setAttribute('data-i', '' + i)
+    }
+
+    ul.onclick = function(evt) {
+        var event = evt || window.event
+        var target = event.target
+        if (target.dataset.i) {
+            for (let i = 0; i < liImg.length; i++) {
+                liImg[i].classList.remove('action')
+            }
+            target.classList.add('action')
+            minImg.src = target.src
+            div.style.backgroundImage = 'url("' + target.src + '")'
+        }
+    }
+
+    min.onmouseover = function() {
+        span.style.display = 'block'
+        div.style.display = 'block'
+        wd = span.clientWidth
+        hg = minImg.clientWidth
+        mw = min.getBoundingClientRect().left
+        mh = min.getBoundingClientRect().top
+    }
+
+    min.onmousemove = function(evt) {
+        var event = evt || window.event
+        ww = event.clientX - mw - wd / 2
+        hh = event.clientY - mh - wd / 2
+        if (ww < 0) {
+            ww = 0
+        }
+        if (ww > hg - wd) {
+            ww = hg - wd
+        }
+        if (hh < 0) {
+            hh = 0
+        }
+        if (hh > hg - wd) {
+            hh = hg - wd
+        }
+        span.style.left = ww + 'px'
+        span.style.top = hh + 'px'
+        div.style.backgroundPosition = -ww * 2.664 + 'px ' + -hh * 2.664 + 'px' //2.664是(1066 - 400) / (400 - 150)得到的
+    }
+    min.onmouseout = function() {
+        span.style.display = 'none'
+        div.style.display = 'none'
+    }
+</script>
+
+</html>

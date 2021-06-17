@@ -1,0 +1,61 @@
+.banner {
+    width: 600px;
+    height: 350px;
+    margin: 100px auto 0;
+    position: relative;
+}
+
+.banner img {
+    width: 600px;
+    height: 350px;
+    border: 1px solid rgb(216, 141, 223);
+    display: none;
+}
+
+.banner img.active {
+    display: block;
+}
+
+.btn {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 145px;
+}
+
+.pre {
+    left: 0;
+    background: url('./img/pre.png') no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+}
+
+.next {
+    right: 0;
+    background: url('./img/next.png') no-repeat;
+    cursor: pointer;
+    background-size: 60px 60px;
+}
+
+.dots {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.dots .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, .6);
+    cursor: pointer;
+}
+
+.dots .dot.active {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border: 2px solid rgb(255, 255, 255, 1);
+    border-radius: 15px;
+}

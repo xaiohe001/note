@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下
+        朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下
+        朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下 朕的天下
+        <div class="box">box的内容</div>
+
+        <input type="text" value="" id="input">
+
+        <form action="" id="form">
+            <input type="text" id="inputs" /><br>
+            <textarea name="" id="textarea" cols="30" rows="10">love</textarea><br>
+            <input type="reset" id="reset" />
+            <input type="submit" id="submit" />
+        </form>
+
+
+    </div>
+    <script>
+        //window
+        //onload 页面加载完成(文档 图片 js资源)
+        window.onload = function() {
+                console.log('页面加载完成,包含图片 js资源');
+            }
+            //onresize 视口大小发生变化 
+        window.onresize = function() {
+                console.log('视口大小发生变化');
+            }
+            //onscroll 页面发生滚动
+        window.onscroll = function() {
+            console.log('页面滚动');
+        }
+
+        // 鼠标事件
+        var box = document.getElementsByClassName('box')[0];
+        // onclick 1. 元素被点击时触发
+        // box.onclick = function() {
+        //         console.log('box被点击了');
+        //     }
+
+        // ondblclick 2. 元素被双击时触发
+        // box.ondblclick = function() {
+        //     console.log('box被双击了');
+        // }
+
+        // oncontextmenu 3. 被鼠标右键点击了
+        // box.oncontextmenu = function() {
+        //     console.log('被鼠标右键点击了');
+        // }
+
+        // onmousedown 4. 鼠标被按下触发
+        // box.onmousedown = function() {
+        //     console.log('鼠标被按下触发');
+        // }
+
+        // onmouseup 5. 鼠标弹起触发
+        // box.onmouseup = function() {
+        //     console.log('鼠标弹起触发');
+        // }
+
+        // onmouseover 6. 鼠标滑过时触发
+        // box.onmouseover = function() {
+        //     console.log('鼠标滑过该区域');
+        // }
+
+        // onmouseout 7. 鼠标移出该区域时触发
+        // box.onmouseout = function() {
+        //     console.log('鼠标移出该区域时触发');
+        // }
+
+
+        // 键盘事件
+        // var input = document.getElementById('input');
+        // input.onkeydown = function() {
+        //     console.log('按键被按下');
+        // }
+
+        // input.onkeypress = function() {
+        //     console.log('按键被按下并弹起时调用');
+        // }
+
+        // input.onkeyup = function() {
+        //     console.log('按键被弹起时调用');
+        // }
+
+        // onkeypress 和 onkeyup 的区别,当点击键盘上的功能键(方向键 enter键),
+        // 不会去调用onkeypress.
+
+
+        //form表单事件
+        var form = document.getElementById('form');
+        var inputs = document.getElementById('inputs');
+        var textarea = document.getElementById('textarea');
+        var reset = document.getElementById('reset');
+        var submit = document.getElementById('submit');
+        //获得焦点时被调用
+        inputs.onfocus = function() {
+                console.log('获得焦点');
+            }
+            //input框失去焦点时触发
+        inputs.onblur = function() {
+                console.log('失去焦点');
+            }
+            //当input的数据值发生了变化且失去焦点
+        inputs.onchange = function() {
+                console.log('onchange事件触发了');
+            }
+            //onselect 用户在选择文本时触发
+        inputs.onselect = function() {
+            //第一种
+            // console.log('onselect事件触发了');
+            // var selectedText = window.getSelection();
+            // console.log(selectedText + '');
+
+            //第二种 有 bug
+            var selectedText;
+            selectedText = inputs.value.slice(inputs.selectionStart, inputs.selectionEnd);
+            console.log('selectedText');
+        }
+        form.onsubmit = function(e) {
+            console.log('onsubmit事件触发了');
+            e.preventDefault();
+        }
+
+        form.onreset = function() {
+            console.log('onreset事件被触发了');
+        }
+    </script>
+</body>
+
+</html>

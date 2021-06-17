@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="goods">
+        坚果商品: <br>
+        <input type="checkbox" value="1">花生
+        <input type="checkbox" value="2">核桃
+        <input type="checkbox" value="3">巴旦木
+        <input type="checkbox" value="4">板栗
+        <input type="checkbox" value="5">碧根果
+        <input type="checkbox" value="6">松子
+    </div>
+    全部购买
+    <input type="checkbox" id="choiceAll">
+
+    <script>
+        var goods = document.getElementById('goods');
+        var checkboxs = goods.querySelectorAll('input');
+        var choiceAll = document.getElementById('choiceAll');
+        var checkboxsLength = checkboxs.length;
+        var count = 0;
+        for (var i = 0; i < checkboxsLength; i++) {
+            console.log(checkboxs[i]);
+            checkboxs[i].onchange = function() {
+                if (this.checked === true) {
+                    count++;
+                } else {
+                    count--;
+                }
+                if (count === checkboxsLength) {
+                    choiceAll.checked = true;
+                } else {
+                    choiceAll.checked = false;
+                }
+            }
+        }
+        choiceAll.onchange = function() {
+            if (this.checked === true) {
+                count = checkboxsLength;
+                for (var j = 0; j < checkboxsLength; j++) {
+                    checkboxs[j].checked = true;
+                }
+            } else {
+                count = 0;
+                for (var k = 0; k < checkboxsLength; k++) {
+                    checkboxs[k].checked = false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建一个正则表达式的方式
+        var re = 'abc';
+        // 方式一:
+        var reg = /abc/; // 这里的abc是字符串
+        var reg = /re/; // 这里的re是字符串
+        // 方式二:
+        var reg1 = new RegExp(re); // 匹配re变量里面的字符串'abc'
+        var reg1 = new RegExp('abc');
+
+        var str = 'abdabcd';
+        // console.log(reg.test(str));
+        // console.log(reg1.test(str));
+
+        // 两种创建正则表达式的区别:
+        // 字面量(字面值)不支持变量
+
+        // 正则的方法:
+        // test:
+        //      正则.test(被检测的字符串); 若匹配不到,则返回true,若没有匹配到,则返回false
+        // 字符串的方法:
+        // match:
+        //      匹配到了,会返回一个数组;若没有匹配到,会返回null
+
+        // 正则表达式的修饰符
+        var reg2 = /ab/gi; // g是全局匹配,i是不分大小写,m是多行匹配
+        var str1 = 'abcdabcaccabcaABaB';
+        console.log(str1.match(reg2));
+        // \n 换行符
+        var reg3 = /^a/mg; //匹配每一行以'a'开始
+        var str2 = 'abc\nbcs\nack\nahj';
+        console.log(str2.match(reg3));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">content</div>
+    <script>
+        // 构造函数 就是来创建对象的
+        // 方式: new Person(); 得到一个对象
+        // 本质上还是一个函数
+        // 只不过 把函数名的第一个字母大写,以区分和普通函数的区别
+        // 在构造函数内,不用var 声明他的属性(变量) 会用this
+
+        // var arr = new Array(); // Array  本质上就是一个构造函数
+        // var obj = new Object(); // Object  本质上也是一个构造函数
+
+        // 字面量 创建对象
+        // var obj = {
+        //     name: 'xiaoqiu',
+        //     age: 16,
+        //     sayName: function() {
+        //         console.log(this.name, this.age);
+        //     }
+        // };
+        // console.log(obj.sayName());
+
+        // js模式  工厂模式
+        // 通过创建一个函数,接收各属性值,里面创建一个对象,在该函数被调用时,把这个对象return出来
+        // function createPerson(name, age) {
+        //     var person = new Object();
+        //     person.name = name;
+        //     person.age = age;
+        //     person.sayName = function() {
+        //         console.log(person.name);
+        //     }
+        //     return person;
+        // }
+        // var person1 = createPerson('xiaoqiu', 16);
+        // var person2 = createPerson('xiaoming', 18);
+        // var person3 = createPerson('xiaoliu', 12);
+        // console.log(person1, person2, person3);
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+            this.sayName = function() {
+                console.log(this.name);
+            }
+        }
+        var person5 = new Person('han', 15); // 通过 new Person()的方式 创建一个对象
+        var person6 = new Person('an', 16);
+        console.log(person5, person6);
+        console.log(person5.name, ' person5.name');
+        console.log(person5.sayName());
+
+        // 看下通过 new Person()
+        // 1. 在new的过程中,内部其实已经创建了一个对象
+        // 2. 这里的this指向 新的对象
+        // 3. 执行构造函数内的代码,其实就是给 this 添加属性
+        // 4. 默认返回this this即是新对象
+
+        function fn() {
+            console.log(this);
+        }
+        // 函数的三个方法:
+        // apply call bind
+        // apply 参数的说明 第一个参数是 当前函数执行环境(改变this指向),第二个参数是个数组,传递给函数
+        // call 参数说明 第一个参数是 当前函数执行环境(改变this指向),剩余参数(可以一个,也可以多个)也传递给函数
+
+        // 用来改变当前函数执行的环境(改变当前this指向)
+        var box = document.querySelector('.box');
+        // 非ie低版本
+        ////  addEventLister 
+        // box.addEventListener('click', function() {
+        //     console.log(this);
+        // }, false);
+
+        // ie低版本 attachEvent
+        // box.attachEvent('onclick', function() {
+        //     // fn(); fn里的this 指向的是window
+        //     fn.bind(box)(); //ie9版本以上
+        // })
+        // false 事件冒泡的阶段被执行
+        // true 事件捕获的阶段被执行
+    </script>
+</body>
+
+</html>

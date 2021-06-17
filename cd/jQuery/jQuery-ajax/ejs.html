@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jQuery-min.js"></script>
+    <script src="./ejs.min.js"></script>
+    <style>
+        .loading {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* margin: auto; */
+        }
+    </style>
+</head>
+
+<body>
+    <div>撩我</div>
+    <!-- 定义我们的ejs模板 -->
+    <script type="text/template" id="list">
+        <div>
+            <%=item.name%>
+                <%=item.age%>
+                    <%=item.address%>
+
+        </div>
+    </script>
+    <script>
+        // $.ajax 万能方法 
+        //  $.ajax({
+        //     url: '', 请求地址
+        //     method: 'GET', 请求方式(GET POST)
+        //     data: {}, 给后端发送数据
+        //     dataType: 请求数据类型(xml html text json jsonp)
+        //     contentType: 'application/x-www-form-urlencoded' //默认用户是form(表单)方式提交的  'application/json' 用户以json的数据格式提交的
+        //     cache: false,  // 默认是true 缓存
+        //     beforeSend: function() {
+        //         // 应用场景: loading动画 开始loading动画
+        //     },
+        //     success: function(response) {   // 请求成功 //这里response不是固定写法, 开发者自己定义,后端数据会值自动赋给它
+        //     },
+        //     error: function(xhr, error, throwErr) {},
+        //     headers: {
+        //         a: 1,
+        //         b: 2
+        //     }
+        //     complete: function() {      // 请求完成(不管是成功还是失败,都会执行)
+        //     }
+        // })
+
+        $.ajax({
+            url: 'http://10.50.5.75:3000/userList',
+            method: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                $('body').append('<div class="loading"> <img src="../loading.gif" alt=""></div>')
+            },
+            complete: function() {
+                $('.loading').remove();
+            },
+            success: function(yes) {
+                var data = yes;
+                var template = $('#list').html();
+                var html = ejs.render(template, {
+                    item: data
+                });
+                $('body').append(html);
+            },
+            error: function(xhr, error, throwErr) {
+                // 错误处理
+                console.log(xhr);
+                console.log(error);
+                console.log(throwErr);
+            },
+            headers: {
+                name: 'xiaohua',
+                age: 12
+            }
+        })
+    </script>
+</body>
+
+</html>

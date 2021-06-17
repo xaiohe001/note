@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  ajax依赖XMLHttpRequest对象
+        //  var xhr = new XMLHttpRequest();
+
+        //  xhr 有两个方法
+        //  open('GET',url,ture) 请求初始化  参数说明: 第一个参数:请求方式(比如get post)  第二个参数: url地址  第三个参数: 默认true
+        //  send() 发送请求
+
+        //  xhr 有两个状态
+        //      readyState
+        //          0   请求未初始化  还未调用open方法
+        //          1   调用open方法, 但还没有调用send方法
+        //          2   send方法被调用了  请求正在发送...
+        //          3   请求正在处理
+        //          4   请求成功  有返回值
+        //      status
+        //          200 请求成功
+        //          3xx 重定向 资源未找到,又指向另外一个地址
+        //          404 资源未找到 客户端错误
+        //          500 服务端错误
+
+        //  xhr.responseText
+        //          后端返回的数据
+
+        var xhr = new XMLHttpRequest(); // ajax依赖 XMLHttpRequest对象
+        xhr.onreadystatechange = function() {
+            console.log(xhr.readyState);
+            console.log(xhr.status);
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        }
+        xhr.open('GET', 'http:10.50.5.75:3000/userList', true);
+        xhr.send();
+    </script>
+</body>
+
+</html>

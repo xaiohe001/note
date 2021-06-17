@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jQuery-min.js"></script>
+</head>
+
+<body>
+    <div class="container">撩我,快撩我</div>
+    <div class="container">撩我,快撩我</div>
+    <div class="container">撩我,快撩我</div>
+    <div class="container">撩我,快撩我</div>
+</body>
+<script>
+    // 替换
+    // replaceWith 将所有匹配的元素替换成指定的HTML或DOM元素
+    // 已知元素.replaceWith(被替换的元素)
+    // replaceAll 用设置的元素替换掉所有selector选中的元素
+
+    var $container = $('.container');
+    // $container.replaceWith($('<p>被撩了</p>'));
+    $('<p>撩不到撩不到</p>').replaceAll('.container');
+</script>
+
+</html>

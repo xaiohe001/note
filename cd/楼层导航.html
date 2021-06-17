@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .box {
+            height: 1000px;
+        }
+        
+        .red {
+            background-color: red;
+        }
+        
+        .yellow {
+            background-color: yellow;
+        }
+        
+        .blue {
+            background-color: blue;
+        }
+        
+        .green {
+            background-color: green;
+        }
+        
+        .purple {
+            background-color: purple;
+        }
+        
+        ul {
+            position: fixed;
+            right: 100px;
+            top: 200px;
+            width: 100px;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+        
+        li {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        li:last-child {
+            border: 0;
+        }
+        
+        li.active {
+            background-color: rgba(255, 255, 255, .8);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box red"></div>
+    <div class="box yellow"></div>
+    <div class="box blue"></div>
+    <div class="box green"></div>
+    <div class="box purple"></div>
+    <!-- violet -->
+    <ul>
+        <li data-i="0" class="active">red</li>
+        <li data-i="1">yellow</li>
+        <li data-i="2">blue</li>
+        <li data-i="3">green</li>
+        <li data-i="4">purple</li>
+    </ul>
+</body>
+<script>
+    var lis = document.querySelectorAll('li');
+    // 监听scroll事件 页面滚动触发
+    window.onscroll = function() {
+            //获取document被卷起的高度值
+            // 方式一:
+            var scrollTop = document.documentElement.scrollTop || document.pageYOffset || document.body.scrollTop;
+            // 方式二:
+            // var scrollTop = window.scrollY;
+            if (scrollTop < 1000) {
+                changeActive(0);
+            } else if (scrollTop >= 1000 && scrollTop < 2000) {
+                changeActive(1);
+            } else if (scrollTop >= 2000 && scrollTop < 3000) {
+                changeActive(2);
+            } else if (scrollTop >= 3000 && scrollTop < 4000) {
+                changeActive(3);
+            } else if (scrollTop >= 4000 && scrollTop < 5000) {
+                changeActive(4);
+            }
+        }
+        //改变样式
+    function changeActive(index) {
+        for (var i = 0; i < lis.length; i++) {
+            if (index === i) {
+                lis[index].classList.add('active');
+            } else {
+                lis[i].classList.remove('active');
+            }
+        }
+    }
+    //给每一个li绑定click事件
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].index = i;
+        lis[i].onclick = function() {
+            document.documentElement.scrollTo(0, this.index * 1000);
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            width: 300px;
+            height: 350px;
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            margin: auto;
+        }
+        li{
+            background-color: red;
+            width: 300px;
+            height: 50px;
+            list-style: none;
+            transition: all 1s;
+        }
+        li:nth-child(2n + 1){
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script>
+        var lis = document.querySelectorAll('li')
+        var ul = document.querySelector('ul')
+        var count
+        for(let i = 0;i < lis.length;i++){
+            lis[i].setAttribute('data-i',i)
+        }
+        ul.onclick = function (evt) {
+            var event = evt || window.event
+            var target = event.target
+            for(let i = 0;i < lis.length;i++){
+                lis[i].style.height = '50px'
+            }
+            if(count === target.dataset.i){
+                count = 0
+            }else{
+                count = target.dataset.i
+                target.style.height = '150px'
+            }
+        }
+    </script>
+</body>
+</html>

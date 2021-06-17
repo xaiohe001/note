@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery-min.js"></script>
+    <style>
+        .container {
+            width: 200px;
+            height: 200px;
+            background-color: blueviolet;
+            background-image: linear-gradient(pink, rgb(218, 37, 218), blueviolet);
+            /* display: none; */
+        }
+        
+        .button {
+            position: fixed;
+            top: 220px;
+            margin-left: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+    <button class="button">撩我</button>
+</body>
+<script>
+    // fadeIn   淡入  通过设置透明度的变化来实现的
+    // fadeOut  淡出  通过设置透明度的变化来实现的
+    // 上面两个方法的参数说明
+    // 第一个参数动画速度(speed) slow | normal fast
+    // 也可以设置时间,以ms计算
+    // fadeTOggle
+    var $container = $('.container');
+    var $button = $('.button');
+
+    // $container.fadeIn(2000); // 从无到有
+    // $container.fadeOut(2000); // 从有到无
+    // 升级版
+    // $button.on('click', function() {
+    //     $container.fadeToggle(3000, function() {
+    //         alert('撩到了');
+    //     });
+    // })
+
+    //// 基本操作
+    //  show    元素显示
+    //  hide    元素隐藏
+    //  toggle  切换元素的显示或者隐藏
+    //  stop    停止当前的动画,执行下一个动画
+    //  delay   延迟动画的发生,延迟的时间就是你传的时间
+    // $container.show(3000);
+    // $container.hide(3000);
+    // 升级版
+    // $button.on('click', function() {
+    //     $container.stop().delay(100).toggle(2000);
+    // })
+
+
+    ////  滑动
+    //  slideUp     收缩起来(高度方向发生变化  向上减小)
+    //  slideDown   展开(高度变化  向下增大)
+    //  slideToggle 切换收缩或展开
+    // $container.slideUp(3000);
+    // $container.slideDown(3000);
+    // $button.on('click', function() {
+    //     $container.stop().slideToggle(3000);
+    // })
+
+    ////  自定义
+    //  animate 自定义动画
+    //  第一个参数是动画属性和终值得样式属性和及其值得集合
+    //  第二个参数是动画的速度(speed)
+    //  第三个参数如果是函数的话,是动画完成时执行的函数,每一个元素执行一次
+    $button.on('click', function() {
+        $container.stop().delay(100).animate({
+            marginLeft: '1000px'
+        }, 3000, function() {
+            alert('撩到了');
+        })
+    })
+</script>
+
+</html>

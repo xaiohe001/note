@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jQuery-min.js"></script>
+</head>
+
+<body>
+    <div class="container">咪咪</div>
+    <script>
+        // 内部插入
+        //  append
+        //  appendTo
+        // 在父元素里面的最后一个元素后面插入
+        // 父级元素.append(被插入的内容)
+        // 被插入的内容.appendTo(父级元素)
+
+        //  prepend
+        //  prependTo
+        // 在父元素里面的第一个元素的前面插入
+        // 父级元素.prepend(被插入的内容)
+        // 被插入的内容.prependTo(父级元素)
+
+        //  创建一个元素
+        //  $('<p>创建的p标签</p>')
+        //   clone 复制元素的
+        //   true  会把绑定的事件复制过来
+        //   false 只会复制元素及里面的内容 不会复制事件
+
+        var $container = $('.container');
+        // var $button = $('.button');
+        var $p = $('<p>创建的p标签</p>');
+        $p.on('click', function() {
+                console.log('我被撩了');
+            })
+            // 给$p绑定一个click事件
+        var $p1 = $p.clone(false);
+        $container.append($p);
+        $container.append($p1);
+        // $p.appendTo($container);
+
+        $container.prepend('<span>span container</span>');
+        $('<i>item</i>').prependTo($container);
+    </script>
+</body>
+
+</html>

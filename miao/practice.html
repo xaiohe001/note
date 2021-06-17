@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .box{
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            margin: auto;
+            background-color: red;
+            border: 5px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        var box = document.querySelector('.box')
+        // ## DOM对象的宽高、位置属性及event对象的位置
+
+
+        // - **DOM对象宽度、位置属性**
+        // - **获取元素相对于浏览器窗口的偏移量**
+        // - **Event对象的位置**
+
+
+        // ### DOM对象的宽高、位置属性
+        // - **注意：大多都是只读属性（scrollLeft、scrollTop除外）。只读属性指的是DOM节点的固有属性，该属性只能通过js只能获取、不能设置，而且获取的值是只有数字并不带单位的（px,em等）**
+        // - clientWidth 和 clientHeight(只读)
+        // - 该属性指的是元素的可视部分宽度和高度，即padding+content，如果出现滚动条，滚动条会遮盖元素的宽高，那么该属性就是其本来的宽高(padding+content)减去滚动条的宽高
+        // box.onmouseenter = function () {
+        //     console.log(1);
+        // }
+
+        // box.onmousemove = function () {
+        //     console.log(box.clientHeight,box.clientWidth);
+        // }
+        // - clientTop 和 clientLeft(只读)
+        // - 这一对属性是用来读取元素的border的宽度和高度的。
+
+        // box.onmouseenter = function () {
+        //     console.log(box.clientLeft,box.clientTop);
+        // }
+
+        // - offsetWidth 和 offsetHeight(只读)
+        // - 这一对属性指的是元素的border+padding+content的宽度和高度，该属性和其内部的内容是否超出元素大小无关，只和本来设定的border以及width和height有关
+
+        // box.onmouseenter = function () {
+        //     console.log(box.offsetWidth,box.offsetHeight);
+        // }
+
+        // - offsetLeft 和 offsetTop(只读)
+        // - 说到这对属性就需要说下offsetParent,所谓offsetParent指的是当前元素的离自己最近的具有定位的（position:absolute或者position：relative）父级元素（不仅仅指的是直接父级元素，只要是它的父元素都可以），该父级元素就是当前元素的offsetParent，如果从该元素向上寻找，找不到这样一个父级元素，那么当前元素的offsetParent就是body元素
+        // - offsetLeft和offsetTop指的是当前元素，相对于其offsetParent左边距离和上边距离
+
+        // box.onmouseenter = function () {
+        //     console.log(box.offsetLeft,box.offsetTop);
+        // }
+
+        // - scrollWidth 和 scrollHeight(只读)
+        // - 这两个属性指的是当元素内部的内容超出其宽度和高度的时候，元素内部内容的实际宽度和高度，需要注意的是，当元素其中内容没有超过其高度或者宽度的时候，该属性是取不到的
+
+        box.onmouseenter = function () {
+            console.log(box.scrollWidth,box.scrollHeight);
+        }
+
+        // - scrollTop 和 scrollLeft(**可读写**)
+        // - 指的是当元素其中的内容超出其宽高的时候，元素被卷起的高度和宽度
+        // - 各个浏览器scrollTop的差异
+        //     - 获取浏览器滚动的距离
+        //     - 各浏览器下 scrollTop 的差异
+        //     - 对于没有 doctype 声明的页面里使用 document.body.scrollTop 来获取scrollTop高度
+        //     - 对于有doctype声明的页面，则可以使用 document.documentElement.scrollTop
+        //     - safari: safari 比较特别，有自己获取scrollTop的函数： window.pageYOffset;
+        //     - firefox: 火狐等相对标准些的浏览器就省心多了，直接用 document.documentElement.scrollTop;
+        //     - 获取 scrollTop 值 (兼容各浏览器)
+        //     var scrollTop = document.documentElement.scrollTop || document.pageYOffset || document.body.scrollTop;
+
+        // - 获取元素相对于浏览器窗口的偏移量
+        // - 方法一： getBoundingClientRect 返回一个矩形对象，包含四个属性： left top right和bottom。分别表示元素距离浏览器左上角的距离
+        // - 方法二： 借助 offsetParent 和 offsetTop 等属性(获取的是相对于窗口左上角的偏移量)
+
+        // ### 事件对象的位置
+        // 在js中，对于元素的运动的操作通常都会涉及到event对象，而event对象也存在很多位置属性，且由于浏览器兼容性问题会导致这些属性间相互混淆
+
+        // - clientX 和 clientY
+        // - 这对属性是当事件发生时，鼠标点击位置相对于浏览器(可视区)的坐标
+        // - 该属性以浏览器左上角坐标为原点，计算鼠标点击位置距离其左上角的位置
+        //     ```js
+        //     var oDiv = document.querySelector('.one);
+        //     oDiv.onclick = function(ev) {
+        //         var evt = ev || window.event;
+        //         console.log(evt.clientX + ":" + evt.clientY);
+        //     }
+        //     ```
+
+        // - screenX 和 screenY
+        // - 事件发生时鼠标相对于屏幕的坐标，以 设备屏幕 的左上角为原点，事件发生时鼠标点击的地方即为该点的screenX和screenY值
+
+        // - offsetX 和 offsetY
+        // - 1、这一对属性是指当事件发生时，鼠标点击位置相对于该事件源的位置，即点击该div，以该div内边距左上角为原点来计算鼠标点击位置的坐标（在chrome中相对于边框左上角）
+        // - 2、需要注意的是，IE，chrome，opera都支持该属性，唯独Firefox不支持该属性
+        // - 3、虽然Firefox提供了一个layerX属性，layerX的数值严格意义上并不等同于offsetX
+        //     -  offsetX是相对于元素的内边距，而layerX是相对于外边距，这时如果边框较宽，两者取值会有误差，或者说，需要减去边框的宽度
+        //     -  大部分的方案都是通过offsetParent逐级计算，或者利用jQuery的$(e.target).offset().left进行计算，要么无法适应有滚动条的情况，要么依赖第三方库，有没有更简单的办法呢？
+        // - 4、推荐写法
+        //     - **return event.offsetX || (event.clientX - srcObj.getBoundingClientRect().left)**  其中 srcObj 是当前元素节点
+
+        // - pageX 和 pageY
+        // - 1、该属性是事件发生时鼠标点击位置相对于页面的位置，通常浏览器窗口没有出现滚动条时，该属性和event.clientX及event.clientY是等价的，但是当浏览器出现滚动条的时候，pageX通常会大于clientX，因为页面还存在被卷起来的部分的宽度和高度
+        // - 2、当浏览器出现了垂直和水平的滚动条，所以pageX和pageY大于clientX和clientY；当浏览器的滚动条没有被拖动或者浏览器没有滚动条的时候，两者是相等的
+
+    </script>
+</body>
+</html>

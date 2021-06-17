@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./三级联动省市区.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <select name="" id="select1"></select>
+        <select name="" id="select2"></select>
+        <select name="" id="select3"></select>
+        <select name="" id="select4"></select>
+    </div>
+</body>
+<script>
+    var select1 = document.getElementById('select1');
+    var select2 = document.getElementById('select2');
+    var select3 = document.getElementById('select3');
+    var select4 = document.getElementById('select4');
+
+    function init() {
+        changeProvince()
+    }
+    // 获取所有省份
+    function changeProvince() {
+        var options = '';
+        for (var key in data) {
+            options += '<option value = ' + key + '>' + key + '</option>';
+        }
+        select1.innerHTML = options;
+        changeCity();
+    }
+    //获取所有城市
+    function changeCity() {
+        var selectedProvince = select1.value; //被选中的城市
+        var options = '';
+        for (var key in data[selectedProvince][0]) {
+            options += '<option value = ' + key + '>' + key + '</option>';
+        }
+        select2.innerHTML = options;
+        changeCounty();
+    }
+    // 获取所有对应的区县
+    function changeCounty() {
+        var selectedProvince = select1.value; //被选中的省
+        var selectedCity = select2.value; //被选中的市
+        var counties = data[selectedProvince][0][selectedCity];
+        var options = '';
+        for (var i = 0; i < counties.length; i++) {
+            for (var key in counties[i]) {
+                options += '<option value = ' + key + '>' + key + '</option>'
+            }
+        }
+        select3.innerHTML = options;
+        changeTown();
+    }
+    // 获取所有对应的镇
+    var arr = '';
+
+    function changeTown() {
+        var selectedProvince = select1.value; //被选中的省
+        var selectedCity = select2.value; //被选中的市
+        var selectedCounty = select3.value; //被选中的区县
+        var towns = data[selectedProvince][0][selectedCity][select3.selectedIndex][selectedCounty];
+        var options = '';
+        var arr = towns.split('、');
+        for (var i = 0; i < arr.length; i++) {
+            options += '<option value = ' + arr[i] + '>' + arr[i] + '</option>';
+
+        }
+        select4.innerHTML = options;
+    }
+    // 当省发生变化时,二级和三级对应的值也跟着变化
+    select1.onchange = function() {
+            changeCity();
+        }
+        // 当城市发生变化时,三级对应的值也跟着变化
+    select2.onchange = function() {
+            changeCounty();
+        }
+        // 当区县发生变化时,四级对应的值也跟着变化
+    select3.onchange = function() {
+            changeTown();
+        }
+        //调用 初始化
+    init()
+</script>
+
+</html>

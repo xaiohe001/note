@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery-min.js"></script>
+</head>
+
+<body>
+    <!-- <p>这是p</p> -->
+    <div class="container">
+        <i>666</i><span>999</span>
+        <p>1</p>
+        <p>2</p>
+        <p class="mp">3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <script>
+        // 获取dom元素的下标,是在一个父元素查找的,不区分元素类型
+        var $p = $('.container p');
+        var $mp = $('.container .mp');
+        console.log($p.index());
+        console.log($mp.index());
+
+        //// jquery的事件绑定语法
+        // $(dom).on('事件类型',function(){
+        //     //...
+        // })
+
+        $p.on('click', function() {
+            console.log($(this).index());
+        })
+
+        var $li = $('ul li');
+        $li.on('click', function() {
+            console.log($(this).index());
+        })
+    </script>
+</body>
+
+</html>

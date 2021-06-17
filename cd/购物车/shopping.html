@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .confirm {
+            width: 200px;
+            height: 100px;
+            background-color: grey;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -150px;
+            display: none;
+        }
+        
+        #yes {
+            width: 80px;
+            height: 30px;
+            margin: 35px 12px;
+        }
+        
+        #no {
+            width: 80px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1" cellpadding="20" id="goods">
+        <tr>
+            <th>选择</th>
+            <th>商品</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>操作</th>
+        </tr>
+        <tr class="tr-item">
+            <td><input type="checkbox" class="checkItem"></td>
+            <td>苹果</td>
+            <td class="price">0.8</td>
+            <td>
+                <button class="add">+</button>
+                <span class="count">1</span>
+                <button class="reduce">-</button>
+            </td>
+            <td><button class="delete">删除</button></td>
+        </tr>
+        <tr class="tr-item">
+            <td><input type="checkbox" class="checkItem"></td>
+            <td>香蕉</td>
+            <td class="price">1.6</td>
+            <td>
+                <button class="add">+</button>
+                <span class="count">1</span>
+                <button class="reduce">-</button>
+            </td>
+            <td><button class="delete">删除</button></td>
+        </tr>
+        <tr class="tr-item">
+            <td><input type="checkbox" class="checkItem"></td>
+            <td>橘子</td>
+            <td class="price">0.9</td>
+            <td>
+                <button class="add">+</button>
+                <span class="count">1</span>
+                <button class="reduce">-</button>
+            </td>
+            <td><button class="delete">删除</button></td>
+        </tr>
+        <tr class="tr-item">
+            <td><input type="checkbox" class="checkItem"></td>
+            <td>西瓜</td>
+            <td class="price">0.3</td>
+            <td>
+                <button class="add">+</button>
+                <span class="count">1</span>
+                <button class="reduce">-</button>
+            </td>
+            <td><button class="delete">删除</button></td>
+        </tr>
+    </table>
+    <div>
+        全选：<input type="checkbox" class="checkAll">
+    </div>
+    <div>
+        合计: <span class="total">0.00元</span>
+    </div>
+    <div class="confirm">
+        <button id="yes">确定</button>
+        <button id="no">取消</button>
+    </div>
+    <script src="./shopping.js"></script>
+</body>
+
+
+</html>

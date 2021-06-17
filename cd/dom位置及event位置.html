@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .contaniner {
+            width: 200px;
+            padding: 50px;
+            border: 1px solid #000;
+        }
+        
+        .box {
+            height: 1000px;
+            margin: 30px;
+            padding: 20px;
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contaniner">
+        <div class="box">love</div>
+    </div>
+</body>
+<script>
+    var contaniner = document.querySelector('.contaniner');
+    var box = document.querySelector('.box');
+
+    //keycode(了解)
+    // var keycode = event.keycode || event.which // 会获取对应键盘内码
+    // return 键 13  tab 键 9 
+    // 应用常见
+    // form表单提交  按回车键,去触发 onsubmit (判断当前keycode === 13 时, 去调用submit方法)
+    //  dom 位置信息 在没有特殊说明,这些值是读写的
+
+    ////  clientWidth clientHeight
+    // 当前元素的宽和高 (content+padding) 注意:不包含border的值
+    console.log(box.clientWidth, box.clientHeight, "clientWidth,clientHeight");
+    ////  clientLeft clientTop
+    //  当前元素的宽和高的border值
+    console.log(box.clientLeft, box.clientTop, "clientLeft,clientTop");
+    ////  offsetWidth offsetHeight
+    //  当前元素的宽和高 (content+padding+border)
+    console.log(box.offsetWidth, box.offsetHeight);
+    ////  scrollWidth scrollHeight
+    //  元素宽高的真实值 不包含border
+    console.log(box.scrollWidth, box.scrollHeight);
+
+
+    // //  scrollTop scrollLeft 只有在滚动条的时候才会读到,或者为0
+    // //  特别说明:可以读,可以改变其值
+    // //  元素被卷起部分的高和宽
+    // console.log(box.scrollTop, box.scrollLeft);
+    // window.onscroll = function() {
+    //     console.log(box.scrollWidth, box.scrollHeight);
+    //     // document.documentElement  / html 节点
+    //     // document.documentElement.scrollTop  firefox chrom 大部分浏览器
+    //     // window.pageYOffset  safari / 苹果浏览器
+    //     // document.body.scrollTop 页面声明的时候 没有去声明doctype
+    //     var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    //     var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft;
+    //     console.log(scrollTop, scrollLeft);
+    // }
+
+
+    //////  求元素距离浏览器左上角的距离:
+    // 方式一:
+    // dom.getBoundingClientRect().left;  / 这个方法返回的值 可以读取他的left right top bottom
+    //  当前元素这个矩形框距离浏览器的位置
+    // 方式二:
+    //  借助 offsetLeft  offsetParent
+
+    // offsetParent
+    // dom(当前的节点)的父级元素如果设置了position:relate; offsetParent 就是设置了 position属性最近的父级元素;如果父级元素没有设置,那offsetParent就是body.
+    // offsetLeft offetTop 相当于 offsetParent位置读取
+    console.log(box.offsetParent);
+    console.log(box.offsetLeft, box.offsetTop);
+
+    ////  event 对象的位置信息
+    box.onclick = function(evt) {
+        var event = evt || window.event;
+        // console.log(event);
+        //clientX clientY
+        // 当前被点击的点相对于 窗口 可视区域的左上角距离
+        // console.log(event.clientX, event.clientY);
+
+        //offsetX offsetY
+        // 相对于当前被点击元素的左上角距离
+        // console.log(event.offsetX, event.offsetY);
+
+        // var offsetX = event.offsetX || ((event.clientX - this.clientLeft) - this.getBoundingClientRect().left);
+        // var offsetY = event.offsetY || ((event.clientY - this.clientTop) - this.getBoundingClientRect().top);
+        // console.log(offsetX, offsetY);
+
+        // pageX pageY
+        //相对于页面左上角的距离
+        //不管有没有滚动,这两个属性是固定的
+        console.log(event.pageX, event.pageY);
+
+        // screenX screenY
+        //相对于 浏览器设备的左上角
+        // 会随着滚动,值发生变化
+        console.log(event.screenX, event.screenY);
+    }
+</script>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        .picture {
+            height: 400px;
+            background: #fff;
+            background-attachment: fixed;
+        }
+        
+        .pea {
+            background-image: url('./img/wallhaven-01l7ev.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        
+        .peb {
+            background-image: url('./img/wallhaven-zmm93v.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        
+        .pec {
+            background-image: url('./img/wallhaven-43w8p3.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        
+        .ped {
+            background-image: url('./img/wallhaven-m9pwr1.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
+    <script src="../jQuery/jQuery-min.js"></script>
+</head>
+
+<body>
+    <div class="picture"></div>
+    <div class="picture pea"></div>
+    <div class="picture"></div>
+    <div class="picture peb"></div>
+    <div class="picture"></div>
+    <div class="picture pec"></div>
+    <div class="picture"></div>
+    <div class="picture ped"></div>
+    <div class="picture"></div>
+</body>
+<script>
+    $(function() {
+        var _top = 0; // 存储上次的滚动距离
+        var y = 0; // 给背景图片设置偏移量
+        $(document).on('scroll', function() {
+            var scrollTop = $(this).scrollTop();
+            if (scrollTop > _top) {
+                console.log('向下移动');
+                y -= 1;
+            } else {
+                console.log('向上移动');
+                y += 1;
+            }
+            _top = scrollTop; // 把当前元素的滚动距离保存到_top
+            console.log(y);
+            console.log(scrollTop);
+            $('.picture').css('backgroundPositionY', y);
+        })
+    })
+</script>
+
+</html>
